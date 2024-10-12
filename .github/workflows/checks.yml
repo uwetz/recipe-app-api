@@ -18,6 +18,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install docker-compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
       - name: Test
         run: sudo docker-compose run --rm app sh -c "python manage.ph test"
       - name: Lint
